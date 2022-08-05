@@ -17,6 +17,8 @@ const App = () => {
       userId: Math.random(),
     };
     await addPost(task);
+    setTitle("");
+    setBody("");
   };
   console.log(data);
 

@@ -10,7 +10,7 @@ export const postApi = createApi({
       query: () => "/posts",
     }),
     addPost: builder.mutation({
-      query: (post) => ({
+      query: (post: PostType) => ({
         url: "/posts",
         method: "POST",
         body: post,
