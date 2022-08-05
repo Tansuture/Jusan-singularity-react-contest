@@ -42,7 +42,7 @@ const App = () => {
       {isSuccess && (
         <>
           {data.map((post: PostType) => (
-            <Post key={post.id} post={post} />
+            <Post body={body} title={title} key={post.id} post={post} />
           ))}
         </>
       )}
