@@ -24,9 +24,9 @@ const EditTask: FC<Props> = ({
     const post = {
       title,
       body,
-      userId: id,
-      id,
+      id: id,
     };
+
     updatePost(post);
   };
   return (
@@ -40,19 +40,17 @@ const EditTask: FC<Props> = ({
             marginTop: "10px",
           }}
         >
-          <input
-            placeholder="add title"
-            type="text"
-            name="title"
-            onChange={(e) => setTitle(e.target.value.toUpperCase())}
-            value={title}
-          />
           <textarea
-            placeholder="add body"
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            placeholder="edit title"
+          ></textarea>
+          <textarea
+            placeholder="edit title"
             onChange={(e) => setBody(e.target.value)}
             value={body}
           ></textarea>
-          <button onClick={handleUpdateTask}>updATE TASK</button>
+          <button onClick={handleUpdateTask}>update post</button>
           <button onClick={() => setShow(false)}>X</button>
         </div>
       )}

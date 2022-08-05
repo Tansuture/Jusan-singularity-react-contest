@@ -1,3 +1,4 @@
+import { styled } from "@mui/material";
 import React, { FC, useState } from "react";
 import EditTask from "./EditTask";
 
@@ -11,15 +12,21 @@ const Post: FC<Props> = ({ post, title, body }) => {
   const [editTitle, setTitle] = useState(title);
   const [editbody, setBody] = useState(body);
 
+  const MainDiv = styled("div")`
+    border: 1px solid black;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding: 10px;
+  `;
   return (
-    <div>
+    <MainDiv>
       <div>
         <h1>{post.title}</h1>
-        <p>{post.title}</p>
+        <p>{post.body}</p>
         <button onClick={() => setShow(true)}>edit post</button>
         <EditTask
           show={show}
-          title={title}
+          title={editTitle}
           setBody={setBody}
           setTitle={setTitle}
           body={editbody}
@@ -27,7 +34,7 @@ const Post: FC<Props> = ({ post, title, body }) => {
           setShow={setShow}
         />
       </div>
-    </div>
+    </MainDiv>
   );
 };
 

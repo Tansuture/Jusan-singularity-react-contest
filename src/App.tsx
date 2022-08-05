@@ -1,4 +1,6 @@
+import { CircularProgress } from "@mui/material";
 import { useState } from "react";
+import { Route } from "react-router-dom";
 import Post from "./component/Post";
 
 import { useAddPostMutation, usePostsQuery } from "./store/postApi";
@@ -37,7 +39,7 @@ const App = () => {
       <button onClick={handleAddTask}>Add task</button>
       <div>
         {error && <p>An error occured</p>}
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <CircularProgress></CircularProgress>}
       </div>
       {isSuccess && (
         <>
