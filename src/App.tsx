@@ -1,26 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Post from "./component/Post";
 
-function App() {
+import { useAddPostMutation, usePostsQuery } from "./store/postApi";
+
+const App = () => {
+  const { data, isLoading, error, isSuccess } = usePostsQuery("s");
+
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [addPost, result] = useAddPostMutation();
+  const handleAddTask = async () => {
+    const task = {
+      title,
+      body,
+      id: Math.random(),
+      userId: Math.random(),
+    };
+    await addPost(task);
+  };
+  console.log(data);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        placeholder="enter the title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      ></input>
+      <input
+        placeholder="enter the body"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+      ></input>
+      <button onClick={handleAddTask}>Add task</button>
+      <div>
+        {error && <p>An error occured</p>}
+        {isLoading && <p>Loading...</p>}
+      </div>
+      {isSuccess && (
+        <>
+          {data.map((post: PostType) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </>
+      )}
     </div>
   );
-}
+};
 
 export default App;
